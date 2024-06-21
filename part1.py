@@ -128,6 +128,18 @@ e1.is_senior = lambda *args: f'Yes {args} is senior.' # This be a method not a
 
 
 # ------------------------------------------------------------------------------
+"""Initializing class Instance"""
+
+class BackendEmployee:
+
+    def __init__(self): # Object is already created by __new__ method.
+        print(f'Hello from {self}.')
+
+e1 = BackendEmployee() # __new__ -> __init__
+# BackendEmployee() = BackendEmployee.__init__(e1)
+
+# We can customize the instance creation process by overriding __new__ method.
 
 
+# ------------------------------------------------------------------------------
 
