@@ -115,7 +115,7 @@ e1.fun                  # Bound method of MyClass to the e1 object.
 # e1.fun__func__ Represents the bound method.
 e1.fun() # = MyClass.fun(e1)
 
-# Method = instatnce + function.
+# Method = instance + function.
 
 """Note: A function will only bound to an object if it defined in the class."""
 BackendEmployee.is_admin = lambda self: f'Yes {self} is admin.'
@@ -139,6 +139,50 @@ e1 = BackendEmployee() # __new__ -> __init__
 # BackendEmployee() = BackendEmployee.__init__(e1)
 
 # We can customize the instance creation process by overriding __new__ method.
+
+
+# ------------------------------------------------------------------------------
+"""Creating attributes of an Instance at RUNTIME."""
+
+from types import MethodType
+
+e1.exp = MethodType(lambda self: f'{self} have 5 years exp.', e1)
+e1.__dict__ # If will show that the function is bounded to the instance e1.
+# via exp attribute of e1.
+
+
+# ------------------------------------------------------------------------------
+"""Properties"""
+e1.bonus = property(fget='get_function',
+                    fset='set_function',
+                    fdel='del_function')
+# property is a class of type property...
+# It is mainly used to avoid direct modification of private and protected
+# attributes.
+
+
+# ------------------------------------------------------------------------------
+"""Properties Decorator"""
+
+@property
+def get_func():
+    pass
+
+@get_func.setter
+def set_func(value):
+    pass
+
+@get_func.deleter
+def del_func():
+    pass
+
+
+# ------------------------------------------------------------------------------
+"""Read only and Computed Properties."""
+
+# Read only property: Only getter is defined.
+# Setter property is an example of lazy computation.
+
 
 
 # ------------------------------------------------------------------------------
