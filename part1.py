@@ -184,6 +184,48 @@ def del_func():
 # Setter property is an example of lazy computation.
 
 
+# ------------------------------------------------------------------------------
+"""Class and Static Methods."""
+
+# Using @classmethod decorator over a method inside a class we can bound that
+# method to the CLASS instead of the INSTANCE. Calling the method will work with
+# the instance as well.
+
+# Using @staticmethod decorator over a method inside a class we can remove the
+# instance/class bounding. Calling the method will work with both
+# the instance as well as with the class.
+
+
+# ------------------------------------------------------------------------------
+"""Builtin and Standard Types."""
+# Not all types in python are present in the builtin types.
+# list, str, tuple, etc are examples of builtin and standard types but
+# function, generator, etc are not part of builtin and standard types to
+# validate the type of above we can use `types` module.
+from types import FunctionType
+from types import GeneratorType
+
+
+# ------------------------------------------------------------------------------
+"""Class and Functions Body Scope."""
+name = 'ADI'
+
+class ManipulateNames:
+    name = 'ADITYA'
+    lst1 = [name] * 3
+    lst2 = [name for i in range(3)]
+
+    @classmethod
+    def get_name(cls):
+        return f'{name} says hello!'
+
+ManipulateNames.get_name() # 'ADITYA'
+ManipulateNames.lst1       # ['ADITYA', 'ADITYA', 'ADITYA']
+ManipulateNames.lst2       # ['ADI', 'ADI', 'ADI']
+# What HAAWWW... lst2 got created using a type of comprehension, which is also a
+# type of function. And we say that the scope a function created in a class is
+# not nested to the class but with the module.
+
 
 # ------------------------------------------------------------------------------
 
