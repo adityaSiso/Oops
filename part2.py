@@ -97,8 +97,55 @@ __eq__          ==  equal
 __ne__          !=  not equal
 """
 
+# ------------------------------------------------------------------------------
+"""Hashability and Equality"""
+
+# __hash__ and __set__
+# if __eq__ is overridden in a class then class object will become unhashable
+# unless __hash__ is explicitly impletemented.
+class Person:
+
+    def __init__(self, name: str) -> None:
+        self._name = name
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    def __eq__(self, __o: object) -> bool:
+        return isinstance(__o, Test) and self.name == __o.name
+
+    def __hash__(self) -> int:
+        return hash(self.name)
+
+p1 = Person('abc')
+p2 = Person('abc')
+p3 = Person('xyz')
+
+"""
+p1 == p2 will be false if __eq__ was not implemented because `==` = `is` when
+comparing objects but in our case it will be true as the name is being compared.
+"""
 
 
+# ------------------------------------------------------------------------------
+"""Boolean
 
+__bool__ = (len() == 0)
+If __len__ is implemented in our class and we call bool on your object it will
+simply call the __len__ method of our class.
+"""
 
+class Length:
 
+    def __init__(self, length: str) -> None:
+        self.length = length
+
+    def __len__(self) -> bool:
+        print('Calling __len__...')
+        return len(self.length)
+
+len1 = Length('abcd')
+print(bool(len1)) # Calling __len__... True
+len2 = Length('')
+print(bool(len2)) # Calling __len__... False
