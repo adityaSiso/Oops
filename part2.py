@@ -46,7 +46,7 @@ y = repr(obj)   # Will call the __repr__ method
 # the default __repr__ method.
 
 # All the formatting ways (f, .format(), %s) will also call the __str__ method
-# if implemented else __repr__ method.
+# if implemented, else __repr__ method.
 
 
 # ------------------------------------------------------------------------------
@@ -149,3 +149,32 @@ len1 = Length('abcd')
 print(bool(len1)) # Calling __len__... True
 len2 = Length('')
 print(bool(len2)) # Calling __len__... False
+
+
+# ------------------------------------------------------------------------------
+"""Callables
+
+__call__
+Usually used to create a decorator class.
+"""
+
+# ------------------------------------------------------------------------------
+"""Deletable
+
+
+__del__
+Method gets called right before the GC deletes the object. And the __del__
+methods get called only when all other references fo the objects are removed.
+
+Note: Inside __del__ method the raised exceptions stays silent and it is
+directed to the standard errors.
+
+Context managers are a better alternative of __del__.
+"""
+
+# ------------------------------------------------------------------------------
+"""Format
+
+__format__
+format one type of instance to other type.
+"""
