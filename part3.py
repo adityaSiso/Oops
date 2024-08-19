@@ -54,3 +54,57 @@ obj.__dict__ or vars(obj).
 AND we cannot add an attribute to an instance.
 obj.new = 'test'
 """
+
+class Person:
+    __slots__ = 'name',
+
+    def __init__(self, name) -> None:
+        self.name = name
+
+
+class Student(Person):
+    __slots__ = 'course', '__dict__'
+
+    def __init__(self, name, course) -> None:
+        super().__init__(name)
+        self.course = course
+
+
+# ------------------------------------------------------------------------------
+
+def validate_integer(arg_name: str, arg_value: int,
+                     min_value: int = None, max_value: int = None,):
+
+    if not isinstance(arg_value, int):
+        raise TypeError(f'{arg_name} value should be of integer type.')
+
+    if min_value is not None and arg_value < min_value:
+        raise ValueError(f'{arg_value} fails the minimum bound value.')
+
+    if max_value is not None and arg_value > max_value:
+        raise ValueError(f'{arg_value} fails the maximum bound value.')
+
+
+"""Project"""
+class CPU:
+
+    def __init__(self) -> None:
+        pass
+
+    def __repr__(self) -> str:
+        pass
+
+class Storage:
+
+    def __init__(self) -> None:
+        pass
+
+class HDD(Storage):
+
+    def __init__(self) -> None:
+        pass
+
+class SSD(Storage):
+
+    def __init__(self) -> None:
+        pass
